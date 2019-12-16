@@ -2,9 +2,20 @@ $(document).ready(function () {
     selectRecipe();
     $('#chooseRecipe').on('change',function () {
         var recipe = $('#chooseRecipe').val();
-        updateRecipe(recipe);
+        getRecipe(recipe);
     })
-   
+    $('#minus').on('click', function () {
+        decrease();
+        var guest = $('#member').val();//old member 4 it will decrease when click -
+        var recipe = $('#chooseRecipe').val();//id from select
+         updateRecipe(recipe,guest);
+    });
+    $('#add').on('click', function () {
+        increase();
+        var guest = $('#member').val();//old member 4 it will increase when click +
+        var recipe = $('#chooseRecipe').val();
+         updateRecipe(recipe,guest);
+    });
 })
 function url() {
     var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
@@ -14,12 +25,12 @@ function selectRecipe(data) {
     $.ajax({
         dataType: 'json',
         url: url(),
-        success: (data) => getRecipe(data.recipes),//get recipe 
+        success: (data) => chooseRecipe(data.recipes),//get recipe 
         error: () => console.log("Cannot get data"),
     })
 }
 var apiData = [];
-function getRecipe(datas) {
+function chooseRecipe(datas) {
     apiData = datas;
     var choose = "";
     apiData.forEach(element => {
@@ -29,30 +40,49 @@ function getRecipe(datas) {
     });
     $('#chooseRecipe').append(choose);//if we want display html and in js
 }
-$('#guest').hide();
-function updateRecipe(recipeId) {
+$('#guest,#appear,#ingredient').hide();
 
+var nbDefault = 1;
+function getRecipe(recipeId) {
     apiData.forEach(element => {
         if (element.id == recipeId) {
             eachStep(element.instructions);
             eachRecipe(element.name,element.iconUrl);
             eachIngredient(element.ingredients);
-            $('#member').val(element.nbGuests);
+             $('#member').val(element.nbGuests);
+            $('#guest,#appear,#ingredient').show();
+            guestDefault = $('#member').val();
+        }
+    })
+}
+function updateRecipe(recipeId,guest){
+    apiData.forEach(element => {
+        if (element.id == recipeId) {
+            eachStep(element.instructions);
+            eachRecipe(element.name,element.iconUrl);
+            updateIngredient(element.ingredients, guest);
+            $('#member').val(guest);
             $('#guest').show();
         }
     })
 }
-function eachStep(step) {
+function eachStep(step){
+    //cut <step> frome instruction
     var steps = step.split('<step>');
     var listStep = "";
+    var bg = ["","bg-primary","bg-success","bg-info","bg-danger"];
     for (let i = 1; i < steps.length; i++) {
         listStep += `
-        <li class = "list-group-item" style = "border:none">
-        <strong class = "text-primary">Step: ${i}</strong>
-        <br>
-        &nbsp;&nbsp;
-        ${steps[i]}
-        </li>
+       <div class = "card ${bg[i]}  shadow-lg mt-3">
+             <div class = "card-body ">
+                <li class = "list-group-item " style = "border:none;">
+                <strong class = "text-primary">Step: ${i}</strong>
+                <br>
+                &nbsp;&nbsp;
+                ${steps[i]}
+                </li>
+            </div>
+       </div>
      `
     }
     $('#step').html(listStep);
@@ -60,8 +90,8 @@ function eachStep(step) {
 function eachRecipe(name,image){
     var recipes ="";
     recipes += `
-        <strong>${name}</strong>
-        <img src = "${image}" width = "100">
+        <strong class = "text-info">${name}</strong>
+        <img src = "${image}" width = "100" class = "rounded-circle">
     `;
     $('#recipe').html(recipes);
 }
@@ -80,9 +110,9 @@ function eachIngredient(ing) {
     $('#ingredient').html(ingredient);
 }
 function getMember(){
-    var member = "";
-
+    
 }
+
 function increase() {
     var member = $('#member').val();
     var guest = parseInt(member) + 1;
@@ -98,6 +128,22 @@ function decrease() {
         $('#member').val(guest);
     }
 }
+var updateIngredient = (ing,guest) => {
+    var ingredient = "";
+    ing.forEach(element => {
+       var add = element.quantity *parseInt( guest)/ guestDefault;
+      console.log(add)
+       ingredient += `
+       <tr>
+           <td><img src = "${element.iconUrl}" width = "50"></td>
+           <td class = "text-success">${element.name}</td>
+           <td><span class = "badge badge-info">${ add }</span></td>
+           <td class = "text-danger">${element.unit[0]}</td>
+       </tr>
+     `
+    })
+    $('#ingredient').html(ingredient);
+} 
 
 
 

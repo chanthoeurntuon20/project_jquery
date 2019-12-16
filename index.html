@@ -6,18 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="js/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
         tr,
         td {
             padding: 15px;
         }
+        #bebe {
+            background: url(bg.jpg);
+            background-size: cover;
+           
+        }
+        #ingredient {
+            background: #fff;
+            height: 350px;
+        }
     </style>
 </head>
 
-<body>
-    <div class="container mt-5">
-        <div class="row">
+<body id="bebe">
+    <div class="container mt-5" >
+        <div class="row mb-5">
             <div class="col-4"></div>
             <div class="col-4">
                 <select class="form-control" id="chooseRecipe">
@@ -31,20 +40,31 @@
             <div class="col-6" id="guest" >
                 <div class="input-group mb-3">
                     <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">&minus;</button>
+                        <button class="btn btn-primary" type="button" id="minus">&minus;</button>
                     </div>
-                    <input type="text" class="form-control " disabled id="member" value="1">
+                    <input type="text" class="form-control text-center" disabled id="member" value="1">
                     <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">&plus;</button>
+                        <button class="btn btn-primary" type="button" id="add">&plus;</button>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row" id="appear">
+            <div class="col-6">
+              <a href="#">
+                    <h3 class="text-warning">Ingredient</h3>
+              </a>
+            </div>
+            <div class="col-6">
+                <a href="#">
+                    <h3>Step</h3>
+                </a>
             </div>
         </div>
         <div class="row">
             <div class="col-6" id="ingredient">
             </div>
             <div class="col-6" id="step">
-
             </div>
         </div>
     </div>
