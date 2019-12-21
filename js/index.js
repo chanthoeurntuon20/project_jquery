@@ -41,7 +41,7 @@ function chooseRecipe(datas) {
     });
     $('#chooseRecipe').append(choose);//if we want display html and in js
 }
-$('#guest,#appear,#ingredient').hide();
+$('#guest,#appear,#ingredient,#input').hide();
 
 var guestDefault = 1;
 function getRecipe(recipeId) {
@@ -51,7 +51,7 @@ function getRecipe(recipeId) {
             eachRecipe(element.name,element.iconUrl);
             eachIngredient(element.ingredients);
              $('#member').val(element.nbGuests);
-            $('#guest,#appear,#ingredient').show();
+            $('#guest,#appear,#ingredient,#input').show();
             guestDefault = $('#member').val();
         }
     })
