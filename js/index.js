@@ -9,6 +9,7 @@ $(document).ready(function () {
         var guest = $('#member').val();//old member 4 it will decrease when click -
         var recipe = $('#chooseRecipe').val();//id from select
          updateRecipe(recipe,guest);
+         $('member').html("")
     });
     $('#add').on('click', function () {
         increase();
@@ -42,7 +43,7 @@ function chooseRecipe(datas) {
 }
 $('#guest,#appear,#ingredient').hide();
 
-var nbDefault = 1;
+var guestDefault = 1;
 function getRecipe(recipeId) {
     apiData.forEach(element => {
         if (element.id == recipeId) {
@@ -56,6 +57,7 @@ function getRecipe(recipeId) {
     })
 }
 function updateRecipe(recipeId,guest){
+    
     apiData.forEach(element => {
         if (element.id == recipeId) {
             eachStep(element.instructions);
@@ -73,16 +75,13 @@ function eachStep(step){
     var bg = ["","bg-primary","bg-success","bg-info","bg-danger"];
     for (let i = 1; i < steps.length; i++) {
         listStep += `
-       <div class = "card ${bg[i]}  shadow-lg mt-3">
-             <div class = "card-body ">
-                <li class = "list-group-item " style = "border:none;">
-                <strong class = "text-primary">Step: ${i}</strong>
-                <br>
-                &nbsp;&nbsp;
-                ${steps[i]}
-                </li>
-            </div>
-       </div>
+        <li class = "list-group-item " style = "border:5px solid pink;">
+        <strong class = "text-primary">Step: ${i}</strong>
+        <br>
+        &nbsp;&nbsp;
+        ${steps[i]}
+        </li>
+        <br>
      `
     }
     $('#step').html(listStep);
@@ -90,7 +89,7 @@ function eachStep(step){
 function eachRecipe(name,image){
     var recipes ="";
     recipes += `
-        <strong class = "text-info">${name}</strong>
+        <strong class = "text-danger">${name}</strong>
         <img src = "${image}" width = "100" class = "rounded-circle">
     `;
     $('#recipe').html(recipes);
@@ -100,17 +99,14 @@ function eachIngredient(ing) {
     ing.forEach(element => {
         ingredient += `
         <tr>
-            <td><img src = "${element.iconUrl}" width = "50"></td>
-            <td>${element.name}</td>
-            <td>${element.quantity}</td>
-            <td>${element.unit[0]}</td>
+            <td ><img src = "${element.iconUrl}" width = "50"></td>
+            <td  class = "text-success">${element.name}</td>
+            <td <span class = "badge badge-info">${element.quantity}</span></td>
+            <td  class = "text-danger">${element.unit[0]}</td>
         </tr>
       `
     })
     $('#ingredient').html(ingredient);
-}
-function getMember(){
-    
 }
 
 function increase() {
@@ -132,13 +128,12 @@ var updateIngredient = (ing,guest) => {
     var ingredient = "";
     ing.forEach(element => {
        var add = element.quantity *parseInt( guest)/ guestDefault;
-      console.log(add)
        ingredient += `
-       <tr>
+       <tr >
            <td><img src = "${element.iconUrl}" width = "50"></td>
-           <td class = "text-success">${element.name}</td>
-           <td><span class = "badge badge-info">${ add }</span></td>
-           <td class = "text-danger">${element.unit[0]}</td>
+           <td  class = "text-warning">${element.name}</td>
+           <td><span class = "badge badge-info">${add}</span></td>
+           <td  class = "text-primary">${element.unit[0]}</td>
        </tr>
      `
     })
