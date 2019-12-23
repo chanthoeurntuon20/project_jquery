@@ -108,22 +108,6 @@ function eachIngredient(ing) {
     })
     $('#ingredient').html(ingredient);
 }
-
-function increase() {
-    var member = $('#member').val();
-    var guest = parseInt(member) + 1;
-    if (guest <= 15) {
-        $('#member').val(guest);
-    }
-}
-
-function decrease() {
-    var member = $('#member').val();
-    var guest = parseInt(member) - 1;
-    if (guest >= 1) {
-        $('#member').val(guest);
-    }
-}
 var updateIngredient = (ing,guest) => {
     var ingredient = "";
     ing.forEach(element => {
@@ -139,6 +123,18 @@ var updateIngredient = (ing,guest) => {
     })
     $('#ingredient').html(ingredient);
 } 
+function increase() {
+    var member = $('#member').val();
+    var guest = parseInt(member) + 1;
+    if (guest <= 15) {
+        $('#member').val(guest);
+    }
+}
 
-
-
+function decrease() {
+    var member = $('#member').val();
+    var guest = parseInt(member) - 1;
+    if (guest >= 1) {
+        $('#member').val(guest);
+    }
+}
