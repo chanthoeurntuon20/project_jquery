@@ -1,20 +1,24 @@
 $(document).ready(function () {
+    
     selectRecipe();
+    //when choose recipe information will be change
     $('#chooseRecipe').on('change',function () {
         var recipe = $('#chooseRecipe').val();
         getRecipe(recipe);
+        
     })
+    //Decrease number of persons
     $('#minus').on('click', function () {
         decrease();
         var guest = $('#member').val();//old member 4 it will decrease when click -
-        var recipe = $('#chooseRecipe').val();//id from select
+        var recipe = $('#chooseRecipe').val();// Get id from select
          updateRecipe(recipe,guest);
-         $('member').html("")
     });
+      //Increase number of persons
     $('#add').on('click', function () {
         increase();
         var guest = $('#member').val();//old member 4 it will increase when click +
-        var recipe = $('#chooseRecipe').val();
+        var recipe = $('#chooseRecipe').val();// Get id from select
          updateRecipe(recipe,guest);
     });
 })
@@ -41,7 +45,7 @@ function chooseRecipe(datas) {
     });
     $('#chooseRecipe').append(choose);//if we want display html and in js
 }
-$('#guest,#appear,#ingredient,#input').hide();
+$('#guest,#appear,#ingredient,#input,#hide ').hide();
 
 var guestDefault = 1;
 function getRecipe(recipeId) {
@@ -51,11 +55,12 @@ function getRecipe(recipeId) {
             eachRecipe(element.name,element.iconUrl);
             eachIngredient(element.ingredients);
              $('#member').val(element.nbGuests);
-            $('#guest,#appear,#ingredient,#input').show();
+            $('#guest,#appear,#ingredient,#input,#hide').show();
             guestDefault = $('#member').val();
         }
     })
 }
+
 function updateRecipe(recipeId,guest){
     
     apiData.forEach(element => {
@@ -72,7 +77,6 @@ function eachStep(step){
     //cut <step> frome instruction
     var steps = step.split('<step>');
     var listStep = "";
-    var bg = ["","bg-primary","bg-success","bg-info","bg-danger"];
     for (let i = 1; i < steps.length; i++) {
         listStep += `
         <li class = "list-group-item " style = "border:5px solid pink;">
@@ -99,6 +103,7 @@ function eachIngredient(ing) {
     ing.forEach(element => {
         ingredient += `
         <tr>
+            
             <td ><img src = "${element.iconUrl}" width = "50"></td>
             <td  class = "text-success">${element.name}</td>
             <td <span class = "badge badge-info">${element.quantity}</span></td>

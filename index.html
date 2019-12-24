@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title><img src="1.jpg"> Project jquery</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
         tr,
         td {
             padding: 15px;
         }
-
-        #background {
-            background: url(bg.jpg);
-            background-size: cover;
-
+        body{
+            background: rgb(90, 82, 82);
         }
-
+        #background {
+          background-image: url(food.png);
+          background-size:cover ;
+        }
         #ingredient {
             background: #fff;
             height: 350px;
@@ -29,19 +29,21 @@
 
 <body id="background">
     <div class="container mt-5">
-        <div class="row mb-5">
+        <div class="row mb-5" >
 
             <div class="col-6">
+                <h3  id="hide" class="text-white">Choose type of food</h3>
                 <select class="form-control" id="chooseRecipe">
                     <option value="" disabled selected>Choose recipe</option>
                 </select>
             </div>
             <div class="col-6">
+                <h3  id="hide" class="text-white">Number of persons</h3>
                 <div class="input-group mb-3" id="input">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button" id="minus">&minus;</button>
                     </div>
-                    <input type="text" class="form-control text-center" disabled id="member" value="1" >
+                    <input type="text" class=" text-center form-control" disabled id="member" value="1" >
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button" id="add">&plus;</button>
                     </div>
@@ -52,7 +54,7 @@
                 <div class="col-4"> </div>
                 <div class="col-4">
                     <div class="row mb-5">
-                        <div class="card shadow-lg bg-dark">
+                        <div class="card shadow-lg bg-warning">
                             <div class="card-body" id="recipe">
                             </div>
                         </div>
@@ -76,6 +78,16 @@
                     <div class="col-6" id="ingredient"></div>
                     <div class="col-6" id="step"> </div>
                 </div>
+                <footer>
+                    <div class="row">
+                        <div class="col-3">
+                    
+                        </div>
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                        <div class="col-3"></div>
+                    </div>
+                </footer>
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/index.js"></script>
