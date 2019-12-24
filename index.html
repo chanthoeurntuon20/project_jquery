@@ -12,13 +12,16 @@
         td {
             padding: 15px;
         }
-        body{
+
+        body {
             background: rgb(90, 82, 82);
         }
+
         #background {
-          background-image: url(food.png);
-          background-size:cover ;
+            background-image: url(food.png);
+            background-size: cover;
         }
+
         #ingredient {
             background: #fff;
             height: 350px;
@@ -29,21 +32,20 @@
 
 <body id="background">
     <div class="container mt-5">
-        <div class="row mb-5" >
-
+        <div class="row mb-5">
             <div class="col-6">
-                <h3  id="hide" class="text-white">Choose type of food</h3>
+                <h3 id="hide" class="text-white">Choose type of food</h3>
                 <select class="form-control" id="chooseRecipe">
                     <option value="" disabled selected>Choose recipe</option>
                 </select>
             </div>
             <div class="col-6">
-                <h3  id="hide" class="text-white">Number of persons</h3>
+                <h3 id="hide" class="text-white">Number of persons</h3>
                 <div class="input-group mb-3" id="input">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button" id="minus">&minus;</button>
                     </div>
-                    <input type="text" class=" text-center form-control" disabled id="member" value="1" >
+                    <input type="text" class=" text-center form-control" disabled id="member" value="1">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button" id="add">&plus;</button>
                     </div>
@@ -51,43 +53,33 @@
             </div>
         </div>
         <div class="row" id="guest">
-                <div class="col-4"> </div>
-                <div class="col-4">
-                    <div class="row mb-5">
-                        <div class="card shadow-lg bg-warning">
-                            <div class="card-body" id="recipe">
-                            </div>
+            <div class="col-4"> </div>
+            <div class="col-4">
+                <div class="row mb-5">
+                    <div class="card shadow-lg bg-warning">
+                        <div class="card-body" id="recipe">
                         </div>
                     </div>
                 </div>
-                <div class="col-4"> </div>
             </div>
-            <div class="row" id="appear">
-                    <div class="col-6">
-                        <a href="#">
-                            <h3 class="text-white">Ingredient</h3>
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <a href="#">
-                            <h3 class="text-white">Step</h3>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6" id="ingredient"></div>
-                    <div class="col-6" id="step"> </div>
-                </div>
-                <footer>
-                    <div class="row">
-                        <div class="col-3">
-                    
-                        </div>
-                        <div class="col-3"></div>
-                        <div class="col-3"></div>
-                        <div class="col-3"></div>
-                    </div>
-                </footer>
+            <div class="col-4"> </div>
+        </div>
+        <div class="row" id="appear">
+            <div class="col-6">
+                <a href="#">
+                    <h3 class="text-white">Ingredient</h3>
+                </a>
+            </div>
+            <div class="col-6">
+                <a href="#">
+                    <h3 class="text-white">Step</h3>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6" id="ingredient"></div>
+            <div class="col-6" id="step"> </div>
+        </div>
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/index.js"></script>

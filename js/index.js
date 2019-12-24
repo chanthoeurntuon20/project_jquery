@@ -1,5 +1,4 @@
-$(document).ready(function () {
-    
+$(document).ready(function () {  
     selectRecipe();
     //when choose recipe information will be change
     $('#chooseRecipe').on('change',function () {
@@ -26,6 +25,7 @@ function url() {
     var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
     return url;
 }
+//get recipe
 function selectRecipe(data) { 
     $.ajax({
         dataType: 'json',
@@ -60,9 +60,8 @@ function getRecipe(recipeId) {
         }
     })
 }
-
+//upadte recipe
 function updateRecipe(recipeId,guest){
-    
     apiData.forEach(element => {
         if (element.id == recipeId) {
             eachStep(element.instructions);
@@ -73,6 +72,7 @@ function updateRecipe(recipeId,guest){
         }
     })
 }
+//get step
 function eachStep(step){
     //cut <step> frome instruction
     var steps = step.split('<step>');
@@ -90,6 +90,7 @@ function eachStep(step){
     }
     $('#step').html(listStep);
 }
+//Name and image recipe
 function eachRecipe(name,image){
     var recipes ="";
     recipes += `
@@ -98,12 +99,12 @@ function eachRecipe(name,image){
     `;
     $('#recipe').html(recipes);
 }
+//get ingreditent
 function eachIngredient(ing) {
     var ingredient = "";
     ing.forEach(element => {
         ingredient += `
-        <tr>
-            
+        <tr>  
             <td ><img src = "${element.iconUrl}" width = "50"></td>
             <td  class = "text-success">${element.name}</td>
             <td <span class = "badge badge-info">${element.quantity}</span></td>
@@ -113,6 +114,7 @@ function eachIngredient(ing) {
     })
     $('#ingredient').html(ingredient);
 }
+//update ingredient
 var updateIngredient = (ing,guest) => {
     var ingredient = "";
     ing.forEach(element => {
@@ -128,6 +130,7 @@ var updateIngredient = (ing,guest) => {
     })
     $('#ingredient').html(ingredient);
 } 
+//increase number
 function increase() {
     var member = $('#member').val();
     var guest = parseInt(member) + 1;
@@ -135,7 +138,7 @@ function increase() {
         $('#member').val(guest);
     }
 }
-
+//decrease number
 function decrease() {
     var member = $('#member').val();
     var guest = parseInt(member) - 1;
